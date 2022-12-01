@@ -14,7 +14,7 @@ void setup(){
   //  String hotel three name, float hotel three price, String travel one name, float travel one price, String travel two name, float travel two price, 
   //  String travel three price, float travel three name, String fun fact) 
   
-  City newCity = new City(temp, startDate, endDate, numPeople, language, priceRange, typeVacation);
+    paris = new City("Paris", "France", "French", 20, "Hôtel de l'Europe", 71, "Yooma Urban Lodge Eiffel", 170, "Hotel Grand Powers", 919, "travel1", 1, "travel2", 2, "travel3", 3, "blah blah");
 }
 
 void calcDuration(String startDate, String endDate){
