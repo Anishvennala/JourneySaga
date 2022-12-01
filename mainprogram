@@ -3,8 +3,8 @@ int duration;
 void setup(){
   //variables that gui will use later
   float temp = 20;
-  String startDate = "01/20";  //(month/day)
-  String endDate = "02/12";    //(month/day)
+  String startDate = "03/20";  //(month/day)
+  String endDate = "11/12";    //(month/day)
   int numPeople = 3; 
   String language = "English";  //uppercase
   String budget = "$"; //$/$$/$$$  (cheap, average, luxery)
@@ -72,7 +72,7 @@ void calcDuration(String startDate, String endDate){
   if(month2 - month1 > 1){
     int b = 0;
     int a = days[month1 - 1] - day1;
-    for(int i = 1; i < month2-month1; i++){
+    for(int i = 0; i < month2-month1-1; i++){
       b = b + days[month1 + i];  //middle days
     }
     duration = a + b + day2;
