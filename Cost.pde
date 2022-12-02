@@ -3,14 +3,12 @@ class Cost{
 //Variables
   String  budget;
   int numPeople,duration;
-  //float total;
   
 //Constructor
 //Cost(number of people on the trip, duration of the trip)
   Cost(int NumPeople,int Duration){
     this.numPeople = NumPeople;
     this.duration = Duration; 
-    //this.total = 0;
   }
   
   void finalCost(City c) {
