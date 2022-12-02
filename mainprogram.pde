@@ -1,4 +1,20 @@
 //This is the main program file
+City rec1;
+City rec2;
+City rec3;
+City paris;
+City yosemite;
+City stMoritz;
+City auckland;
+City sydney;
+City mexicoCity;
+City parga;
+City skaftafell;
+City soufriere;
+float temp;
+boolean engLanguage;
+String typeVacation;
+int duration;
 int duration;
 void setup(){
   //variables that gui will use later
