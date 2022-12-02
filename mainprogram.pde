@@ -15,7 +15,6 @@ float temp;
 boolean engLanguage;
 String typeVacation;
 int duration;
-int duration;
 void setup(){
   //variables that gui will use later
   float temp = 20;
