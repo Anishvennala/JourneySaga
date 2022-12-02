@@ -95,3 +95,83 @@ void calcDuration(String startDate, String endDate){
   
   println("duration:", duration);
 }
+
+void getRec(float temp, boolean engLanguage, String typeVacation){
+  if (typeVacation == "adventerous"){
+    if (engLanguage == true){
+      rec1 = yosemite;      
+    }
+    
+    else if (engLanguage == false) {
+      if (temp > 20){
+        rec1 = yosemite;
+        rec2 = auckland;
+        rec3 = stMoritz;
+      }
+      
+      else if (temp < 10){
+        rec1 = stMoritz;
+        rec2 = auckland;
+        rec3 = yosemite;
+      }
+      
+      else{
+        rec1 = auckland;
+        rec2 = yosemite;
+        rec3 = stMoritz;
+      }
+    }
+  }
+  else if (typeVacation == "tourist"){
+    if (engLanguage == true){
+      rec1 = sydney;      
+    }
+    
+    else if (engLanguage == false) {  
+      if (temp > 20){
+        rec1 = mexicoCity;
+        rec2 = sydney;
+        rec3 = paris;
+      }
+      
+      else if (temp < 10){
+        rec1 = paris;
+        rec2 = sydney;
+        rec3 = mexicoCity;
+      }
+      
+      else{
+        rec1 = sydney;
+        rec2 = paris;
+        rec3 = mexicoCity;
+      }
+    }
+  }
+  
+    else if (typeVacation == "luxury"){
+    if (engLanguage == true){
+      rec1 = soufriere;      
+    }
+    
+    else if (engLanguage == false) {  
+      if (temp > 20){
+        rec1 = soufriere;
+        rec2 = parga;
+        rec3 = skaftafell;
+      }
+      
+      else if (temp < 10){
+        rec1 = skaftafell;
+        rec2 = parga;
+        rec3 = soufriere;
+      }
+      
+      else{
+        rec1 = parga;
+        rec2 = soufriere;
+        rec3 = skaftafell;
+      }
+    }
+  }
+  println(rec1, rec2, rec3);
+}
