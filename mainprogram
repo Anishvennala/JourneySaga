@@ -83,3 +83,36 @@ void calcDuration(String startDate, String endDate){
   
   
 }
+
+void calcTemp(float temp){
+  float [] Paris = {5, 6, 9, 12, 15, 19, 21, 20, 18, 14, 8, 6};  //temp in each month
+  float [] StMoritz = {-9, -8, -4, 1, 6, 10, 12, 11, 8, 4, -3, -8};
+  float [] Aukland =  {20, 20, 19, 17, 14, 12, 11, 12, 13, 15, 16, 19};
+  float [] Yosemite = {4, 6, 7, 11, 15, 19, 23, 23, 20, 14, 7, 3};
+  float [] MexicoCity = {};
+  float [] Sydney = {};
+  float [] StLucia = {};
+  float [] Skaftafel = {};
+  float [] Parga = {};
+  
+  float [] monthlyTemp = new float[12];
+  monthlyTemp[month1-1] = Paris[month1-1];
+  monthlyTemp[month1] = StMoritz[month1-1];
+  monthlyTemp[month1+1] = Aukland[month1-1];
+  monthlyTemp[month1+2] = Yosemite[month1-1];
+  /**monthlyTemp[month1-1] = MexicoCity[month1-1];
+  monthlyTemp[month1-1] = Sydney[month1-1];
+  monthlyTemp[month1-1] = StLucia[month1-1];
+  monthlyTemp[month1-1] = Skaftafel[month1-1];
+  monthlyTemp[month1-1] = Parga[month1-1];**/
+  
+  float closestTemp = monthlyTemp[0];
+  for(int i = 0; i < monthlyTemp.length; i++){
+    if(abs(temp - monthlyTemp[i]) < abs(temp - closestTemp)){
+      closestTemp = monthlyTemp[i];
+    }
+  }
+  println(monthlyTemp);
+  println();
+  println("closest temp is:", closestTemp);
+}
