@@ -70,7 +70,7 @@ class City {
       this.travelPrice = this.travelOnePrice;      
     }
     
-    println("You are going to " + this.name + ", " + this.country, ". You are staying at " + hotel + "for $" + hotelPrice + " a night. You are getting there through " + travel + " for $" + travelPrice);
+    println("You could go to " + this.name + ", " + this.country, ". The hotel we would suggest is, " + hotel + "for $" + hotelPrice + " a night. We would suggest traveling through " + travel + " for $" + travelPrice + " round trip");
   }
   
 }
