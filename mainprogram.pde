@@ -29,7 +29,7 @@ void setup(){
   //  String hotel three name, float hotel three price, String travel one name, float travel one price, String travel two name, float travel two price, 
   //  String travel three price, float travel three name, String fun fact) 
   
-    paris = new City("Paris", "France", "French", 20, "Hôtel de l'Europe", 71, "Yooma Urban Lodge Eiffel", 170, "Hotel Grand Powers", 919, "travel1", 1, "travel2", 2, "travel3", 3, "blah blah");
+    paris = new City("Paris", "France", "French", 20, "Hôtel de l'Europe", 71, "Yooma Urban Lodge Eiffel", 170, "Hotel Grand Powers", 919, "Aer Lingus", 569, "Air Canada", 3820, "Air France", 16092, "Paris is often called La Ville Lumière, the City of Light. There are 1,665 steps to the top of the Eiffel Tower. Paris is referred to as the city of light.");
     calcDuration(startDate,endDate);
     paris.vacayInfo(budget);
     Cost newCost = new Cost(numPeople, duration);
