@@ -1,22 +1,59 @@
-//This is the main program file
+import g4p_controls.*;
+
+City rec1;
+City rec2;
+City rec3;
+City paris;
+City yosemite;
+City stMoritz;
+City auckland;
+City sydney;
+City mexicoCity;
+City parga;
+City skaftafell;
+City soufriere;
+float temp;
+boolean engLanguage;
+String typeVacation;
 int duration;
+
 void setup(){
+  
+  createGUI();
   //variables that gui will use later
-  float temp = 20;
-  String startDate = "03/20";  //(month/day)
-  String endDate = "11/12";    //(month/day)
+  //temp = 20;
+  String startDate = "01/22";  //(month/day)
+  String endDate = "02/10";    //(month/day)
   int numPeople = 3; 
-  String language = "English";  //uppercase
-  String budget = "$"; //$/$$/$$$  (cheap, average, luxery)
-  String typeVacation = "tourist";  //adventerous, tourist, lux
+  engLanguage = false;  //uppercase
+  String budget = "$$$"; //$/$$/$$$  (cheap, average, luxery)
+  typeVacation = "tourist";  //adventerous, tourist, lux
   
   //  City(String city, String country, String lang, float temp, String hotel one name, float hotel one price, String hotel two name, float hotel two price, 
   //  String hotel three name, float hotel three price, String travel one name, float travel one price, String travel two name, float travel two price, 
-  //  String travel three price, float travel three name, String fun fact) 
-  
-  //City newCity = new City(temp, startDate, endDate, numPeople, language, priceRange, typeVacation);
+  //  String travel three price, float travel three name, String fun fact)    
 
+
+  paris = new City("Paris", "France", "French", 20, "Hôtel de l'Europe", 71, "Yooma Urban Lodge Eiffel", 170, "Hotel Grand Powers", 919, "Aer Lingus", 569, "Air Canada", 3820, "Air France", 16092, "Paris is often called La Ville Lumière, the City of Light. There are 1,665 steps to the top of the Eiffel Tower. Paris is referred to as the city of light.");
+  stMoritz = new City("St. Moritz", "Switzerland", "German", 20, "St. Moritz Youth Hostel", 86, "Berghotel Randolins", 225, "Grand Hotel des Bains Kempinski St Moritz", 1029, "Air Canada", 2850, "Air Canada", 4057, "Air France", 15395, "is a ski resort in the Engadine valley in Switzerland. Saint Moritz is a ski resort in the Engadine valley in Switzerland.");
+  auckland = new City("Auckland", "New Zealand", "English", 20, "Auckland Airport Kiwi Hotel", 86 ,"Travelodge Hotel Auckland Wynyard Quarter", 190, "The Hotel Britomart", 447, "West Jet", 2228, "Emirates", 3226, "United Airlines", 24600, "Over 50 volcanoes in the city of Auckland. You can walk from the Pacific Ocean to the Tasman Sea in just four hours.");
+  yosemite = new City("Yosemite", "U.S.A.", "English", 20, "Yosemite Bug Rustic Mountain Resort", 81, "Evergreen Lodge at Yosemite ", 154, "The Ahwahnee", 510, "Air Canada", 734, "United Airlines", 1259, "United Airlines", 3355, "Yosemite granite rock formations glow like fire at sunset. The environment supports more than 400 species.");
+  mexicoCity = new City("Mexico City", "Mexico", "Spansih", 20, "Gran Hotel Ciudad De Mexico ", 70, "Zocalo Central ", 157, "Sofitel Mexico City Reforma", 412, "United Airlines", 750, "Delta", 966, "United Airlines", 1161, "More than 150 museums.  The only Royal Castle in the Americas.");
+  sydney = new City("Sydney", "Australia", "English", 20, "The Capsule Hotel", 57, "Rydges World Square Sydney", 183, "The Fullerton Hotel Sydney", 326, "Quantas Airways", 2109, "Korean Air", 3598, "Delta", 16679, "Has more than 100 beaches. The biggest natural harbour in the world.");
+  soufriere = new City("Soufriere", "St. Lucia", "English", 20, "Alfred's Diamond Villas", 79, "Pierre & Vacances Villages Sainte Luce", 149, "Rabot Hotel From Hotel Chocolat", 560, "Aer Canada", 1073, "Caribbean", 2484, "American", 8107, "World's only drive-in volcano in the world.");
+  skaftafell = new City("Skatfell", "Iceland", "Icelandic", 20, "Nypugardar Guesthouse", 96, "Hotel Laki", 178, "Fosshotel Nupar", 390, "Icelandair", 622, "Air Canada", 711, "British Airways", 2065, "Country is 70% covered in rainforest. 180 species of bird.");
+  parga = new City("Parga", "Greece", "Greek", 20, "Kiperi Exclusive", 49, "Villa Angelika", 128, "Angelika Elegant Hotel", 138, "Air Canada", 138, "Aegean", 2043, "Emirates", 3399, "Most popular holiday destination is Parga.  Parga is known for its natural environment.");
+  rec1 = paris;
+  rec2 = auckland;
+  rec3 = parga;
+  
+  paris.vacayInfo(budget);
   calcDuration(startDate, endDate);
+  Cost newCost = new Cost(numPeople, duration);
+  newCost.finalCost(paris);
+  getRec(temp, engLanguage, typeVacation, budget);
+  
+  
 }
 
 void calcDuration(String startDate, String endDate){
@@ -59,60 +96,134 @@ void calcDuration(String startDate, String endDate){
   else{
     day2 = int(strDay2);  //if double digit month like 10, 11, or 12
   }
-  
-  //println(month1, month2, day1, day2);
-  
+    
   //calculating duration 
-  if(month2 - month1 == 0){  //same month
+  if(month2 - month1 == 0){  //same month and same year
     duration = day2 - day1;
   }
-  if(month2 - month1 == 1){  //goes into next month
+  if(month2 - month1 == 1 && month1 < month2){  //goes into next month and same year
     duration = (days[month1 -1] - day1) + day2;  //adding leftover days in starting month to days in final month
   }
-  if(month2 - month1 > 1){
-    int b = 0;
+  if(month2 - month1 > 1 && month1 < month2){ //more than one month difference and same year
     int a = days[month1 - 1] - day1;
+    int b = 0;
     for(int i = 0; i < month2-month1-1; i++){
-      b = b + days[month1 + i];  //middle days
+      b = b + days[month1 + i];
     }
     duration = a + b + day2;
   }
   
-  println("duration:", duration);
-  
-  
-  
-}
-
-void calcTemp(float temp){
-  float [] Paris = {5, 6, 9, 12, 15, 19, 21, 20, 18, 14, 8, 6};  //temp in each month
-  float [] StMoritz = {-9, -8, -4, 1, 6, 10, 12, 11, 8, 4, -3, -8};
-  float [] Aukland =  {20, 20, 19, 17, 14, 12, 11, 12, 13, 15, 16, 19};
-  float [] Yosemite = {4, 6, 7, 11, 15, 19, 23, 23, 20, 14, 7, 3};
-  float [] MexicoCity = {};
-  float [] Sydney = {};
-  float [] StLucia = {};
-  float [] Skaftafel = {};
-  float [] Parga = {};
-  
-  float [] monthlyTemp = new float[12];
-  monthlyTemp[month1-1] = Paris[month1-1];
-  monthlyTemp[month1] = StMoritz[month1-1];
-  monthlyTemp[month1+1] = Aukland[month1-1];
-  monthlyTemp[month1+2] = Yosemite[month1-1];
-  /**monthlyTemp[month1-1] = MexicoCity[month1-1];
-  monthlyTemp[month1-1] = Sydney[month1-1];
-  monthlyTemp[month1-1] = StLucia[month1-1];
-  monthlyTemp[month1-1] = Skaftafel[month1-1];
-  monthlyTemp[month1-1] = Parga[month1-1];**/
-  
-  float closestTemp = monthlyTemp[0];
-  for(int i = 0; i < monthlyTemp.length; i++){
-    if(abs(temp - monthlyTemp[i]) < abs(temp - closestTemp)){
-      closestTemp = monthlyTemp[i];
+  if(month1 > month2){  //second date goes into next year
+    if(month2+12 - month1 == 1){  //dec to jan
+      duration = (days[month1-1] - day1) + day2;
+    }  
+    if(month2+12 - month1 > 1){  //11.05 to 2.22
+      int a = days[month1 - 1] - day1;
+      int b = 0;
+      int c = 0;
+      for(int i = 0; i < 12 - month1; i++){
+        b = b + days[month1+i];
+      }
+      for(int i = 0; i < month2-1; i++){  //0 < 1
+        c = c + days[i];
+      }
+      duration = a + b + c + day2;
     }
   }
-  println(monthlyTemp);
-  println();
-  println("closest temp is:", closestTemp);
+  
+  println("duration:", duration, "days.");
 }
+
+
+void getRec(float temp, boolean engLanguage, String typeVacation, String budget){
+  
+  if (typeVacation == "adventerous"){
+    if (engLanguage == true){
+      rec1 = yosemite;      
+    }
+    
+    else if (engLanguage == false) {
+      if (temp > 20){
+        rec1 = yosemite;
+        rec2 = auckland;
+        rec3 = stMoritz;
+      }
+      
+      else if (temp < 10){
+        rec1 = stMoritz;
+        rec2 = auckland;
+        rec3 = yosemite;
+      }
+      
+      else{
+        rec1 = auckland;
+        rec2 = yosemite;
+        rec3 = stMoritz;
+      }
+    }
+  }
+  else if (typeVacation == "tourist"){
+    if (engLanguage == true){
+      rec1 = sydney;      
+    }
+    
+    else if (engLanguage == false) {  
+      if (temp > 20){
+        rec1 = mexicoCity;
+        rec2 = sydney;
+        rec3 = paris;
+      }
+      
+      else if (temp < 10){
+        rec1 = paris;
+        rec2 = sydney;
+        rec3 = mexicoCity;
+      }
+      
+      else{
+        rec1 = sydney;
+        rec2 = paris;
+        rec3 = mexicoCity;
+      }
+    }
+  }
+  
+    else if (typeVacation == "luxury"){
+    if (engLanguage == true){
+      rec1 = soufriere;      
+    }
+    
+    else if (engLanguage == false) {  
+      if (temp > 20){
+        rec1 = soufriere;
+        rec2 = parga;
+        rec3 = skaftafell;
+      }
+      
+      else if (temp < 10){
+        rec1 = skaftafell;
+        rec2 = parga;
+        rec3 = soufriere;
+      }
+      
+      else{
+        rec1 = parga;
+        rec2 = soufriere;
+        rec3 = skaftafell;
+      }
+    }
+  }
+  
+  else{
+    rec1 = paris;
+    rec2 = soufriere;
+    rec3 = skaftafell;   
+  }
+  //println("1. " + str(rec1.vacayInfo(budget)) + "\n" + "2. " + str(rec2.vacayInfo(budget)) + "\n" + "3. " + str(rec3.vacayInfo(budget)));
+  println();
+  rec1.vacayInfo(budget);
+  rec2.vacayInfo(budget);
+  rec3.vacayInfo(budget);
+}
+
+
