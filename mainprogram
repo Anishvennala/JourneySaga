@@ -225,5 +225,3 @@ void getRec(float temp, boolean engLanguage, String typeVacation, String budget)
   rec2.vacayInfo(budget);
   rec3.vacayInfo(budget);
 }
-
-
