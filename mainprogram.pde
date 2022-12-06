@@ -1,3 +1,5 @@
+import g4p_controls.*;
+
 City rec1;
 City rec2;
 City rec3;
@@ -17,8 +19,9 @@ int duration;
 
 void setup(){
   
+  createGUI();
   //variables that gui will use later
-  temp = 20;
+  //temp = 20;
   String startDate = "01/22";  //(month/day)
   String endDate = "02/10";    //(month/day)
   int numPeople = 3; 
@@ -44,8 +47,8 @@ void setup(){
   rec2 = auckland;
   rec3 = parga;
   
-  println(paris.vacayInfo(budget));
-  calcDuration(startDate,endDate);
+  paris.vacayInfo(budget);
+  calcDuration(startDate, endDate);
   Cost newCost = new Cost(numPeople, duration);
   newCost.finalCost(paris);
   getRec(temp, engLanguage, typeVacation, budget);
@@ -128,7 +131,7 @@ void calcDuration(String startDate, String endDate){
     }
   }
   
-  println("duration:", duration);
+  println("duration:", duration, "days.");
 }
 
 
@@ -216,6 +219,9 @@ void getRec(float temp, boolean engLanguage, String typeVacation, String budget)
     rec2 = soufriere;
     rec3 = skaftafell;   
   }
-  
-  println("1. " + rec1.vacayInfo(budget) + "\n" + "2. " + rec2.vacayInfo(budget) + "\n" + "3. " + rec3.vacayInfo(budget));
+  //println("1. " + str(rec1.vacayInfo(budget)) + "\n" + "2. " + str(rec2.vacayInfo(budget)) + "\n" + "3. " + str(rec3.vacayInfo(budget)));
+  println();
+  rec1.vacayInfo(budget);
+  rec2.vacayInfo(budget);
+  rec3.vacayInfo(budget);
 }
