@@ -48,7 +48,7 @@ class City {
     
   }
   
-  void vacayInfo(String budget){
+  String vacayInfo(String budget){
     if (budget == "$$$"){
       this.hotel = this.hotelThreeName;
       this.hotelPrice = this.hotelThreePrice;
@@ -70,7 +70,7 @@ class City {
       this.travelPrice = this.travelOnePrice;      
     }
     
-    println("You could go to " + this.name + ", " + this.country, ". The hotel we would suggest is, " + hotel + "for $" + hotelPrice + " a night. We would suggest traveling through " + travel + " for $" + travelPrice + " round trip");
+    return("You could go to " + this.name + ", " + this.country, ". The hotel we would suggest is, " + hotel + "for $" + hotelPrice + " a night. We would suggest traveling through " + travel + " for $" + travelPrice + " round trip");
   }
   
 }
