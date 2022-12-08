@@ -18,8 +18,7 @@ String typeVacation;
 int duration;
 
 void setup(){
-  
-  createGUI();
+
   //variables that gui will use later
   //temp = 20;
   String startDate = "01/22";  //(month/day)
