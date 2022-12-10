@@ -17,8 +17,21 @@ boolean engLanguage;
 String typeVacation;
 int duration;
 
-void setup(){
+//Window (Font, image, etc ...)
+PFont rec;
+PImage img;
+PGraphics pg;
 
+void setup(){
+///window///
+  size(1600,800);
+  //text
+  rec = createFont("Arial",16,true);
+  
+  //image
+  img = loadImage("worldMap.png");
+  pg = createGraphics(10,10);
+  
   //variables that gui will use later
   //temp = 20;
   String startDate = "01/22";  //(month/day)
@@ -33,15 +46,16 @@ void setup(){
   //  String travel three price, float travel three name, String fun fact)    
 
 
-  paris = new City("Paris", "France", "French", 20, "Hôtel de l'Europe", 71, "Yooma Urban Lodge Eiffel", 170, "Hotel Grand Powers", 919, "Aer Lingus", 569, "Air Canada", 3820, "Air France", 16092, "Paris is often called La Ville Lumière, the City of Light. There are 1,665 steps to the top of the Eiffel Tower. Paris is referred to as the city of light.");
-  stMoritz = new City("St. Moritz", "Switzerland", "German", 20, "St. Moritz Youth Hostel", 86, "Berghotel Randolins", 225, "Grand Hotel des Bains Kempinski St Moritz", 1029, "Air Canada", 2850, "Air Canada", 4057, "Air France", 15395, "is a ski resort in the Engadine valley in Switzerland. Saint Moritz is a ski resort in the Engadine valley in Switzerland.");
-  auckland = new City("Auckland", "New Zealand", "English", 20, "Auckland Airport Kiwi Hotel", 86 ,"Travelodge Hotel Auckland Wynyard Quarter", 190, "The Hotel Britomart", 447, "West Jet", 2228, "Emirates", 3226, "United Airlines", 24600, "Over 50 volcanoes in the city of Auckland. You can walk from the Pacific Ocean to the Tasman Sea in just four hours.");
-  yosemite = new City("Yosemite", "U.S.A.", "English", 20, "Yosemite Bug Rustic Mountain Resort", 81, "Evergreen Lodge at Yosemite ", 154, "The Ahwahnee", 510, "Air Canada", 734, "United Airlines", 1259, "United Airlines", 3355, "Yosemite granite rock formations glow like fire at sunset. The environment supports more than 400 species.");
-  mexicoCity = new City("Mexico City", "Mexico", "Spansih", 20, "Gran Hotel Ciudad De Mexico ", 70, "Zocalo Central ", 157, "Sofitel Mexico City Reforma", 412, "United Airlines", 750, "Delta", 966, "United Airlines", 1161, "More than 150 museums.  The only Royal Castle in the Americas.");
-  sydney = new City("Sydney", "Australia", "English", 20, "The Capsule Hotel", 57, "Rydges World Square Sydney", 183, "The Fullerton Hotel Sydney", 326, "Quantas Airways", 2109, "Korean Air", 3598, "Delta", 16679, "Has more than 100 beaches. The biggest natural harbour in the world.");
-  soufriere = new City("Soufriere", "St. Lucia", "English", 20, "Alfred's Diamond Villas", 79, "Pierre & Vacances Villages Sainte Luce", 149, "Rabot Hotel From Hotel Chocolat", 560, "Aer Canada", 1073, "Caribbean", 2484, "American", 8107, "World's only drive-in volcano in the world.");
-  skaftafell = new City("Skatfell", "Iceland", "Icelandic", 20, "Nypugardar Guesthouse", 96, "Hotel Laki", 178, "Fosshotel Nupar", 390, "Icelandair", 622, "Air Canada", 711, "British Airways", 2065, "Country is 70% covered in rainforest. 180 species of bird.");
-  parga = new City("Parga", "Greece", "Greek", 20, "Kiperi Exclusive", 49, "Villa Angelika", 128, "Angelika Elegant Hotel", 138, "Air Canada", 138, "Aegean", 2043, "Emirates", 3399, "Most popular holiday destination is Parga.  Parga is known for its natural environment.");
+ //paris (800,180) stMoritz(850,180) Auckland(1580,550) Yosemite(280,200) MexicoCity (350,300) Sydney(1460,550) Sourfriere(500,340) Skaftafell(700,100) Parga(1100,220)
+  paris = new City("Paris", "France", "French", 20, "Hôtel de l'Europe", 71, "Yooma Urban Lodge Eiffel", 170, "Hotel Grand Powers", 919, "Aer Lingus", 569, "Air Canada", 3820, "Air France", 16092, "Paris is often called La Ville Lumière, the City of Light. There are 1,665 steps to the top of the Eiffel Tower. Paris is referred to as the city of light.",800,180);
+  stMoritz = new City("St. Moritz", "Switzerland", "German", 20, "St. Moritz Youth Hostel", 86, "Berghotel Randolins", 225, "Grand Hotel des Bains Kempinski St Moritz", 1029, "Air Canada", 2850, "Air Canada", 4057, "Air France", 15395, "is a ski resort in the Engadine valley in Switzerland. Saint Moritz is a ski resort in the Engadine valley in Switzerland.",850,180);
+  auckland = new City("Auckland", "New Zealand", "English", 20, "Auckland Airport Kiwi Hotel", 86 ,"Travelodge Hotel Auckland Wynyard Quarter", 190, "The Hotel Britomart", 447, "West Jet", 2228, "Emirates", 3226, "United Airlines", 24600, "Over 50 volcanoes in the city of Auckland. You can walk from the Pacific Ocean to the Tasman Sea in just four hours.",1580,550);
+  yosemite = new City("Yosemite", "U.S.A.", "English", 20, "Yosemite Bug Rustic Mountain Resort", 81, "Evergreen Lodge at Yosemite ", 154, "The Ahwahnee", 510, "Air Canada", 734, "United Airlines", 1259, "United Airlines", 3355, "Yosemite granite rock formations glow like fire at sunset. The environment supports more than 400 species.",280,200);
+  mexicoCity = new City("Mexico City", "Mexico", "Spansih", 20, "Gran Hotel Ciudad De Mexico ", 70, "Zocalo Central ", 157, "Sofitel Mexico City Reforma", 412, "United Airlines", 750, "Delta", 966, "United Airlines", 1161, "More than 150 museums.  The only Royal Castle in the Americas.",350,300);
+  sydney = new City("Sydney", "Australia", "English", 20, "The Capsule Hotel", 57, "Rydges World Square Sydney", 183, "The Fullerton Hotel Sydney", 326, "Quantas Airways", 2109, "Korean Air", 3598, "Delta", 16679, "Has more than 100 beaches. The biggest natural harbour in the world.",1460,550);
+  soufriere = new City("Soufriere", "St. Lucia", "English", 20, "Alfred's Diamond Villas", 79, "Pierre & Vacances Villages Sainte Luce", 149, "Rabot Hotel From Hotel Chocolat", 560, "Aer Canada", 1073, "Caribbean", 2484, "American", 8107, "World's only drive-in volcano in the world.",500,340);
+  skaftafell = new City("Skatfell", "Iceland", "Icelandic", 20, "Nypugardar Guesthouse", 96, "Hotel Laki", 178, "Fosshotel Nupar", 390, "Icelandair", 622, "Air Canada", 711, "British Airways", 2065, "Country is 70% covered in rainforest. 180 species of bird.",700,100);
+  parga = new City("Parga", "Greece", "Greek", 20, "Kiperi Exclusive", 49, "Villa Angelika", 128, "Angelika Elegant Hotel", 138, "Air Canada", 138, "Aegean", 2043, "Emirates", 3399, "Most popular holiday destination is Parga.  Parga is known for its natural environment.",1100,220);
   rec1 = paris;
   rec2 = auckland;
   rec3 = parga;
@@ -223,4 +237,35 @@ void getRec(float temp, boolean engLanguage, String typeVacation, String budget)
   rec1.vacayInfo(budget);
   rec2.vacayInfo(budget);
   rec3.vacayInfo(budget);
+}
+
+void draw(){
+  background(0);
+  //MAP
+  pg.beginDraw();
+  pg.stroke(255);
+  pg.line(20, 20, mouseX, mouseY);
+  pg.endDraw();
+  image(img,0,0,width/(width/1600),height/(height/800)); 
+//Anything on TOP of MAP should be WRITTEN AFTER this LINE//
+  textFont(rec,100);
+  fill(0);
+  text("Test 101",10,100);
+  //GIRD//
+  //for (int x = 0;x<width;x=x+10){
+  //  for(int y = 0; y<height;y=y+10){
+  //  noFill();
+  //  if(x%100 == 0){
+  //    if(y%100 ==0){
+  //    fill(255,0,0);
+  //    rect(x,y,10,10);
+  //    }
+  //  }
+  //  rect(x,y,10,10);
+  //  }
+  //}
+  stroke(0);
+  fill(255,0,0);
+  circle(paris.locX,paris.locY,10);
+  
 }
