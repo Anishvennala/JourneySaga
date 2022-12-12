@@ -22,8 +22,10 @@ class City {
   float hotelPrice;
   String travel;
   float travelPrice;
+  int locX;
+  int locY;
 
-  City(String a, String b, String c, float d, String e, float f, String g, float h, String i, float j, String k, float l, String m, float n, String o, float p, String q){    
+  City(String a, String b, String c, float d, String e, float f, String g, float h, String i, float j, String k, float l, String m, float n, String o, float p, String q,int r,int s){    
     this.name = a;
     this.country = b;
     this.language = c;
@@ -45,6 +47,8 @@ class City {
     this.hotelPrice = 0;
     this.travel = null;
     this.travelPrice = 0;
+    this.locX = r;
+    this.locY = s;
     
   }
   
