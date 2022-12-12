@@ -12,13 +12,18 @@ City mexicoCity;
 City parga;
 City skaftafell;
 City soufriere;
+String startLocation;
 float temp;
+String budget;
 boolean engLanguage = false;
+boolean start = false;
 String typeVacation;
 int duration;
-boolean start = flase;
-String startLocation;
-
+String startDate;  //(month/day)
+String endDate;    //(month/day)
+int numPeople; 
+  
+  
 //Window (Font, image, etc ...)
 PFont rec;
 PImage img;
@@ -37,13 +42,6 @@ void setup(){
   
   //variables that gui will use later
   //temp = 20;
-  String startDate = "01/22";  //(month/day)
-  String endDate = "02/10";    //(month/day)
-  String startLocation;
-  int numPeople = 3; 
-  engLanguage = false;  //uppercase
-  String budget = "$$$"; //$/$$/$$$  (cheap, average, luxery)
-  typeVacation = "tourist";  //adventerous, tourist, lux
   
   //  City(String city, String country, String lang, float temp, String hotel one name, float hotel one price, String hotel two name, float hotel two price, 
   //  String hotel three name, float hotel three price, String travel one name, float travel one price, String travel two name, float travel two price, 
@@ -63,14 +61,16 @@ void setup(){
   rec1 = paris;
   rec2 = auckland;
   rec3 = parga;
+  
   if(start == true){
-  //paris.vacayInfo(budget);
-  calcDuration(startDate, endDate);
-  //Cost newCost = new Cost(numPeople, duration);
-  //newCost.finalCost(paris);
-  getRec(temp, engLanguage, typeVacation, budget);
+    paris.vacayInfo(budget);
+    calcDuration(startDate, endDate);
+    Cost newCost = new Cost(numPeople, duration);
+    newCost.finalCost(paris);
+    getRec(temp, engLanguage, typeVacation, budget);
   }
-
+  
+  
 }
 
 void calcDuration(String startDate, String endDate){
@@ -238,59 +238,43 @@ void getRec(float temp, boolean engLanguage, String typeVacation, String budget)
   }
   //println("1. " + str(rec1.vacayInfo(budget)) + "\n" + "2. " + str(rec2.vacayInfo(budget)) + "\n" + "3. " + str(rec3.vacayInfo(budget)));
   println();
-  //this makes the vacation informations to be printed
   rec1.vacayInfo(budget);
   rec2.vacayInfo(budget);
   rec3.vacayInfo(budget);
 }
 
 void draw(){
-  background(0);
-  //MAP
-  pg.beginDraw();
-  pg.stroke(255);
-  pg.line(20, 20, mouseX, mouseY);
-  pg.endDraw();
-  image(img,0,0,width/(width/1600),height/(height/800)); 
-//Anything on TOP of MAP should be WRITTEN AFTER this LINE//
-  textFont(rec,100);
-  fill(0);
-  text("Test 101",10,100);
-  //GIRD//
-  //for (int x = 0;x<width;x=x+10){
-  //  for(int y = 0; y<height;y=y+10){
-  //  noFill();
-  //  if(x%100 == 0){
-  //    if(y%100 ==0){
-  //    fill(255,0,0);
-  //    rect(x,y,10,10);
-  //    }
-  //  }
-  //  rect(x,y,10,10);
-  //  }
-  //}
-  stroke(0);
-  fill(255, 0, 0);
-  circle(rec1.locX, rec1.locY, 10);
-  circle(rec2.locX, rec2.locY, 10);
-  circle(rec3.locX, rec3.locY, 10);
-  //println(mouseX,mouseY);
-  Cityinfo(mouseX, mouseY);
-
-}
-
-
-////GIVE Information depending on where the user hovers over////
-void Cityinfo(int mouseX, int mouseY) {
-  if (sqrt(pow(rec1.locX - mouseX, 2 ) + pow(rec1.locY - mouseY, 2))<10) {
-    println(rec1.name);
-
-  } else if (sqrt(pow(rec2.locX - mouseX, 2 ) + pow(rec2.locY - mouseY, 2))<10) {
-    println(rec2.name);
-
-  } else if (sqrt(pow(rec3.locX - mouseX, 2 ) + pow(rec3.locY - mouseY, 2))<10) {
-    println(rec3.name);
-
+  
+  if(start == true){
+    println("typeVaction:", typeVacation, "temp:", temp, "engLanguage:", engLanguage, "budget:", budget, startDate, endDate, duration, numPeople);
+    
+    background(0);
+    //MAP
+    pg.beginDraw();
+    pg.stroke(255);
+    pg.line(20, 20, mouseX, mouseY);
+    pg.endDraw();
+    image(img,0,0,width/(width/1600),height/(height/800)); 
+  //Anything on TOP of MAP should be WRITTEN AFTER this LINE//
+    textFont(rec,100);
+    fill(0);
+    text("Test 101",10,100);
+    //GIRD//
+    //for (int x = 0;x<width;x=x+10){
+    //  for(int y = 0; y<height;y=y+10){
+    //  noFill();
+    //  if(x%100 == 0){
+    //    if(y%100 ==0){
+    //    fill(255,0,0);
+    //    rect(x,y,10,10);
+    //    }
+    //  }
+    //  rect(x,y,10,10);
+    //  }
+    //}
+    stroke(0);
+    fill(255,0,0);
+    circle(paris.locX,paris.locY,10);
   }
   
 }
