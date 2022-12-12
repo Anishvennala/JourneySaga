@@ -13,9 +13,11 @@ City parga;
 City skaftafell;
 City soufriere;
 float temp;
-boolean engLanguage;
+boolean engLanguage = false;
 String typeVacation;
 int duration;
+boolean start = flase;
+String startLocation;
 
 //Window (Font, image, etc ...)
 PFont rec;
@@ -25,6 +27,7 @@ PGraphics pg;
 void setup(){
 ///window///
   size(1600,800);
+  createGUI();
   //text
   rec = createFont("Arial",16,true);
   
@@ -36,6 +39,7 @@ void setup(){
   //temp = 20;
   String startDate = "01/22";  //(month/day)
   String endDate = "02/10";    //(month/day)
+  String startLocation;
   int numPeople = 3; 
   engLanguage = false;  //uppercase
   String budget = "$$$"; //$/$$/$$$  (cheap, average, luxery)
@@ -59,14 +63,14 @@ void setup(){
   rec1 = paris;
   rec2 = auckland;
   rec3 = parga;
-  
-  paris.vacayInfo(budget);
+  if(start == true){
+  //paris.vacayInfo(budget);
   calcDuration(startDate, endDate);
-  Cost newCost = new Cost(numPeople, duration);
-  newCost.finalCost(paris);
+  //Cost newCost = new Cost(numPeople, duration);
+  //newCost.finalCost(paris);
   getRec(temp, engLanguage, typeVacation, budget);
-  
-  
+  }
+
 }
 
 void calcDuration(String startDate, String endDate){
@@ -234,6 +238,7 @@ void getRec(float temp, boolean engLanguage, String typeVacation, String budget)
   }
   //println("1. " + str(rec1.vacayInfo(budget)) + "\n" + "2. " + str(rec2.vacayInfo(budget)) + "\n" + "3. " + str(rec3.vacayInfo(budget)));
   println();
+  //this makes the vacation informations to be printed
   rec1.vacayInfo(budget);
   rec2.vacayInfo(budget);
   rec3.vacayInfo(budget);
@@ -265,7 +270,27 @@ void draw(){
   //  }
   //}
   stroke(0);
-  fill(255,0,0);
-  circle(paris.locX,paris.locY,10);
+  fill(255, 0, 0);
+  circle(rec1.locX, rec1.locY, 10);
+  circle(rec2.locX, rec2.locY, 10);
+  circle(rec3.locX, rec3.locY, 10);
+  //println(mouseX,mouseY);
+  Cityinfo(mouseX, mouseY);
+
+}
+
+
+////GIVE Information depending on where the user hovers over////
+void Cityinfo(int mouseX, int mouseY) {
+  if (sqrt(pow(rec1.locX - mouseX, 2 ) + pow(rec1.locY - mouseY, 2))<10) {
+    println(rec1.name);
+
+  } else if (sqrt(pow(rec2.locX - mouseX, 2 ) + pow(rec2.locY - mouseY, 2))<10) {
+    println(rec2.name);
+
+  } else if (sqrt(pow(rec3.locX - mouseX, 2 ) + pow(rec3.locY - mouseY, 2))<10) {
+    println(rec3.name);
+
+  }
   
 }
