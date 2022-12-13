@@ -60,5 +60,3 @@ class Cost {
       }
     }
   }
-
-  //Duration, Number of people, time of the year, hotel of that location, trnasportation
