@@ -12,7 +12,9 @@ City mexicoCity;
 City parga;
 City skaftafell;
 City soufriere;
+String startLocation;
 float temp;
+int numRooms;
 String budget;
 boolean engLanguage = false;
 boolean start = false;
@@ -30,6 +32,18 @@ PGraphics pg;
 
 void setup(){
 ///window///
+
+  //pre-set values before GUI
+  typeVacation = "adventerous";
+  numPeople = 1;
+  temp = 0;
+  numRooms = 1;
+  engLanguage = false;
+  budget = "$";
+  startDate = "01/22"; 
+  endDate = "03/10";
+  
+  //create window and gui 
   size(1600,800);
   createGUI();
   //text
@@ -61,18 +75,15 @@ void setup(){
   rec2 = auckland;
   rec3 = parga;
   
-  if(start == true){
-    paris.vacayInfo(budget);
-    calcDuration(startDate, endDate);
-    Cost newCost = new Cost(numPeople, duration);
-    newCost.finalCost(paris);
-    getRec(temp, engLanguage, typeVacation, budget);
-  }
+  
+  
+  
   
   
 }
 
 void calcDuration(String startDate, String endDate){
+  println("im in calcDuration");
   int [] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};  //index of month = month - 1
   String strMonth1 = startDate.substring(0,2); 
   String strMonth2 = endDate.substring(0,2);
@@ -245,7 +256,15 @@ void getRec(float temp, boolean engLanguage, String typeVacation, String budget)
 void draw(){
   
   if(start == true){
-    println("typeVaction:", typeVacation, "temp:", temp, "engLanguage:", engLanguage, "budget:", budget, startDate, endDate, duration, numPeople);
+    
+    paris.vacayInfo(budget);
+    calcDuration(startDate, endDate);
+    Cost newCost = new Cost(numPeople, duration);
+    newCost.finalCost(paris);
+    getRec(temp, engLanguage, typeVacation, budget);
+  
+    println("typeVaction:", typeVacation, "temp:", temp, "engLanguage:", engLanguage, "budget:", budget, startDate, endDate, duration, numPeople, numRooms);
+    //println(startDate, endDate, duration);
     
     background(0);
     //MAP
