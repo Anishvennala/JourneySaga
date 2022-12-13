@@ -19,36 +19,69 @@ synchronized public void win_draw1(PApplet appc, GWinData data) { //_CODE_:windo
 } //_CODE_:window1:776741:
 
 public void date1Changed(GTextField source, GEvent event) { //_CODE_:date1:955750:
-  startDate = date1.getText();
+  if(start == false){
+    startDate = date1.getText();
+  }
 } //_CODE_:date1:955750:
 
 public void tempSliderChanged(GSlider source, GEvent event) { //_CODE_:tempSlider:201894:
-  temp = tempSlider.getValueF();
+  if(start == false){
+    temp = tempSlider.getValueF();
+  }
 } //_CODE_:tempSlider:201894:
 
 public void startButtonClicked(GButton source, GEvent event) { //_CODE_:startButton:297293:
-  start =! start;
+  if(start == false){
+    start =! start;
+  }
+  
 } //_CODE_:startButton:297293:
 
 public void vacationTypeChanged(GDropList source, GEvent event) { //_CODE_:vacationTypeList:754772:
-  typeVacation = vacationTypeList.getSelectedText();
+  if(start == false){
+    typeVacation = vacationTypeList.getSelectedText();
+  }
 } //_CODE_:vacationTypeList:754772:
 
 public void englishBoxClicked(GCheckbox source, GEvent event) { //_CODE_:englishBox:524859:
-  engLanguage =! engLanguage;
+  if(start == false){  
+    engLanguage =! engLanguage;
+  }
 } //_CODE_:englishBox:524859:
 
 public void budgetTypeChanged(GDropList source, GEvent event) { //_CODE_:budgetTypeList:831911:
-  budget = budgetTypeList.getSelectedText();
+  if(start == false){  
+    budget = budgetTypeList.getSelectedText();
+  }
 } //_CODE_:budgetTypeList:831911:
 
 public void date2Changed(GTextField source, GEvent event) { //_CODE_:date2:313793:
-  endDate = date2.getText();
+  if(start == false){
+    endDate = date2.getText();
+  }
 } //_CODE_:date2:313793:
 
 public void peopleNumChanged(GDropList source, GEvent event) { //_CODE_:peopleNum:348284:
-  numPeople = int(peopleNum.getSelectedText());
+  if(start == false){
+    numPeople = int(peopleNum.getSelectedText());
+  }
 } //_CODE_:peopleNum:348284:
+
+public void locationStartChanged(GDropList source, GEvent event) { //_CODE_:locationStart:382412:
+  if(start == false){
+    startLocation = locationStart.getSelectedText();
+  }
+} //_CODE_:locationStart:382412:
+
+public void imgButton1_click1(GImageButton source, GEvent event) { //_CODE_:imgButton1:867486:
+  println("imgButton1 - GImageButton >> GEvent." + event + " @ " + millis());
+} //_CODE_:imgButton1:867486:
+
+public void roomsChaned(GTextField source, GEvent event) { //_CODE_:rooms:768867:
+  if(start == false){
+    numRooms = int(rooms.getText());
+  }
+} //_CODE_:rooms:768867:
 
 
 
@@ -59,17 +92,17 @@ public void createGUI(){
   G4P.setGlobalColorScheme(GCScheme.BLUE_SCHEME);
   G4P.setMouseOverEnabled(false);
   surface.setTitle("Sketch Window");
-  window1 = GWindow.getWindow(this, "Window title", 0, 0, 300, 650, JAVA2D);
+  window1 = GWindow.getWindow(this, "Window title", 0, 0, 650, 650, JAVA2D);
   window1.noLoop();
   window1.setActionOnClose(G4P.KEEP_OPEN);
   window1.addDrawHandler(this, "win_draw1");
-  date1 = new GTextField(window1, 149, 320, 120, 30, G4P.SCROLLBARS_NONE);
+  date1 = new GTextField(window1, 187, 361, 81, 30, G4P.SCROLLBARS_NONE);
   date1.setText("01/22");
   date1.setPromptText("MM/DD");
   date1.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   date1.setOpaque(true);
   date1.addEventHandler(this, "date1Changed");
-  tempSlider = new GSlider(window1, 10, 104, 184, 60, 10.0);
+  tempSlider = new GSlider(window1, 71, 104, 184, 60, 10.0);
   tempSlider.setShowValue(true);
   tempSlider.setShowLimits(true);
   tempSlider.setLimits(0, -50, 50);
@@ -79,48 +112,89 @@ public void createGUI(){
   tempSlider.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   tempSlider.setOpaque(false);
   tempSlider.addEventHandler(this, "tempSliderChanged");
-  startButton = new GButton(window1, 5, 7, 80, 30);
-  startButton.setText("START");
+  startButton = new GButton(window1, 529, 579, 83, 38);
+  startButton.setText("CALCULATE");
   startButton.addEventHandler(this, "startButtonClicked");
-  vacationTypeList = new GDropList(window1, 53, 183, 90, 80, 3, 10);
+  vacationTypeList = new GDropList(window1, 523, 103, 100, 88, 3, 10);
   vacationTypeList.setItems(loadStrings("list_754772"), 0);
   vacationTypeList.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   vacationTypeList.addEventHandler(this, "vacationTypeChanged");
-  englishBox = new GCheckbox(window1, 27, 224, 155, 36);
+  englishBox = new GCheckbox(window1, 83, 232, 155, 36);
   englishBox.setIconAlign(GAlign.LEFT, GAlign.MIDDLE);
   englishBox.setText("English Speaking Country");
   englishBox.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   englishBox.setOpaque(false);
   englishBox.addEventHandler(this, "englishBoxClicked");
-  budgetTypeList = new GDropList(window1, 56, 285, 90, 80, 3, 10);
+  budgetTypeList = new GDropList(window1, 526, 242, 90, 80, 3, 10);
   budgetTypeList.setItems(loadStrings("list_831911"), 0);
   budgetTypeList.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   budgetTypeList.addEventHandler(this, "budgetTypeChanged");
-  label1 = new GLabel(window1, 10, 91, 187, 20);
+  label1 = new GLabel(window1, 32, 87, 266, 20);
   label1.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
-  label1.setText("Temperature Slider");
-  label1.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+  label1.setText("Temperature Slider (adjust with slider below):");
+  label1.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   label1.setOpaque(false);
-  date2 = new GTextField(window1, 149, 367, 120, 30, G4P.SCROLLBARS_NONE);
+  date2 = new GTextField(window1, 187, 322, 81, 30, G4P.SCROLLBARS_NONE);
   date2.setText("03/10");
   date2.setPromptText("Enter: MM/DD");
   date2.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   date2.setOpaque(true);
   date2.addEventHandler(this, "date2Changed");
-  date1Label = new GLabel(window1, 10, 321, 136, 20);
+  date1Label = new GLabel(window1, 24, 367, 136, 21);
   date1Label.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
-  date1Label.setText("Arrival Date(MM/DD):");
+  date1Label.setText("Return Date(MM/DD):");
   date1Label.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   date1Label.setOpaque(false);
-  date2Label = new GLabel(window1, 7, 367, 141, 20);
+  date2Label = new GLabel(window1, 23, 323, 141, 20);
   date2Label.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
   date2Label.setText("Departure Date(MM/DD):");
   date2Label.setLocalColorScheme(GCScheme.CYAN_SCHEME);
   date2Label.setOpaque(false);
-  peopleNum = new GDropList(window1, 54, 409, 90, 220, 10, 10);
+  peopleNum = new GDropList(window1, 444, 419, 90, 220, 10, 10);
   peopleNum.setItems(loadStrings("list_348284"), 0);
   peopleNum.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
   peopleNum.addEventHandler(this, "peopleNumChanged");
+  locationStart = new GDropList(window1, 113, 457, 88, 126, 5, 10);
+  locationStart.setItems(loadStrings("list_382412"), 0);
+  locationStart.setLocalColorScheme(GCScheme.ORANGE_SCHEME);
+  locationStart.addEventHandler(this, "locationStartChanged");
+  vacationTypeLabel = new GLabel(window1, 355, 93, 155, 37);
+  vacationTypeLabel.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  vacationTypeLabel.setText("Choose a type of vacation:");
+  vacationTypeLabel.setLocalColorScheme(GCScheme.CYAN_SCHEME);
+  vacationTypeLabel.setOpaque(false);
+  imgButton1 = new GImageButton(window1, 336, -302, 9, 1078, new String[] { "176575-200.png", "176575-200.png", "176575-200.png" } );
+  imgButton1.addEventHandler(this, "imgButton1_click1");
+  label2 = new GLabel(window1, 28, 198, 276, 38);
+  label2.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  label2.setText("Would you like an English-speaking country? Check the box below for  (Yes):");
+  label2.setLocalColorScheme(GCScheme.CYAN_SCHEME);
+  label2.setOpaque(false);
+  label3 = new GLabel(window1, 68, 419, 179, 44);
+  label3.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  label3.setText("Where is your closest airport? Select from drop down list:");
+  label3.setLocalColorScheme(GCScheme.CYAN_SCHEME);
+  label3.setOpaque(false);
+  label4 = new GLabel(window1, 358, 207, 152, 80);
+  label4.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  label4.setText("What is your budget? Select from drop down list: $=Cheap, $$=Average, $$$=Expensive");
+  label4.setLocalColorScheme(GCScheme.CYAN_SCHEME);
+  label4.setOpaque(false);
+  label5 = new GLabel(window1, 385, 367, 206, 61);
+  label5.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  label5.setText("How many people on this vacation? Select from drop down list:");
+  label5.setLocalColorScheme(GCScheme.CYAN_SCHEME);
+  label5.setOpaque(false);
+  lalbel6 = new GLabel(window1, 66, 514, 95, 28);
+  lalbel6.setTextAlign(GAlign.CENTER, GAlign.MIDDLE);
+  lalbel6.setText("Number of hotel rooms:");
+  lalbel6.setLocalColorScheme(GCScheme.CYAN_SCHEME);
+  lalbel6.setOpaque(false);
+  rooms = new GTextField(window1, 187, 512, 81, 30, G4P.SCROLLBARS_NONE);
+  rooms.setText("1");
+  rooms.setLocalColorScheme(GCScheme.CYAN_SCHEME);
+  rooms.setOpaque(true);
+  rooms.addEventHandler(this, "roomsChaned");
   window1.loop();
 }
 
@@ -138,3 +212,12 @@ GTextField date2;
 GLabel date1Label; 
 GLabel date2Label; 
 GDropList peopleNum; 
+GDropList locationStart; 
+GLabel vacationTypeLabel; 
+GImageButton imgButton1; 
+GLabel label2; 
+GLabel label3; 
+GLabel label4; 
+GLabel label5; 
+GLabel lalbel6; 
+GTextField rooms; 
