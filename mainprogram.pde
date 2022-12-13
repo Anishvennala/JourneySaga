@@ -14,6 +14,7 @@ City skaftafell;
 City soufriere;
 String startLocation;
 float temp;
+int numRooms;
 String budget;
 boolean engLanguage = false;
 boolean start = false;
@@ -31,6 +32,18 @@ PGraphics pg;
 
 void setup(){
 ///window///
+
+  //pre-set values before GUI
+  typeVacation = "adventerous";
+  numPeople = 1;
+  temp = 0;
+  numRooms = 1;
+  engLanguage = false;
+  budget = "$";
+  startDate = "01/22"; 
+  endDate = "03/10";
+  
+  //create window and gui 
   size(1600,800);
   createGUI();
   //text
@@ -62,18 +75,15 @@ void setup(){
   rec2 = auckland;
   rec3 = parga;
   
-  if(start == true){
-    //paris.vacayInfo(budget);
-    calcDuration(startDate, endDate);
-   //Cost newCost = new Cost(numPeople, duration);
-    //newCost.finalCost(paris);
-    getRec(temp, engLanguage, typeVacation, budget);
-  }
+  
+  
+  
   
   
 }
 
 void calcDuration(String startDate, String endDate){
+  println("im in calcDuration");
   int [] days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};  //index of month = month - 1
   String strMonth1 = startDate.substring(0,2); 
   String strMonth2 = endDate.substring(0,2);
@@ -238,7 +248,6 @@ void getRec(float temp, boolean engLanguage, String typeVacation, String budget)
   }
   //println("1. " + str(rec1.vacayInfo(budget)) + "\n" + "2. " + str(rec2.vacayInfo(budget)) + "\n" + "3. " + str(rec3.vacayInfo(budget)));
   println();
-  //this makes the vacation informations to be printed
   rec1.vacayInfo(budget);
   rec2.vacayInfo(budget);
   rec3.vacayInfo(budget);
@@ -247,7 +256,15 @@ void getRec(float temp, boolean engLanguage, String typeVacation, String budget)
 void draw(){
   
   if(start == true){
-    println("typeVaction:", typeVacation, "temp:", temp, "engLanguage:", engLanguage, "budget:", budget, startDate, endDate, duration, numPeople);
+    
+    paris.vacayInfo(budget);
+    calcDuration(startDate, endDate);
+    Cost newCost = new Cost(numPeople, duration);
+    newCost.finalCost(paris);
+    getRec(temp, engLanguage, typeVacation, budget);
+  
+    println("typeVaction:", typeVacation, "temp:", temp, "engLanguage:", engLanguage, "budget:", budget, startDate, endDate, duration, numPeople, numRooms);
+    //println(startDate, endDate, duration);
     
     background(0);
     //MAP
@@ -259,7 +276,7 @@ void draw(){
   //Anything on TOP of MAP should be WRITTEN AFTER this LINE//
     textFont(rec,100);
     fill(0);
-    //text("Test 101",10,100);
+    text("Test 101",10,100);
     //GIRD//
     //for (int x = 0;x<width;x=x+10){
     //  for(int y = 0; y<height;y=y+10){
@@ -273,29 +290,9 @@ void draw(){
     //  rect(x,y,10,10);
     //  }
     //}
-  stroke(0);
-  fill(255, 0, 0);
-  circle(rec1.locX, rec1.locY, 10);
-  circle(rec2.locX, rec2.locY, 10);
-  circle(rec3.locX, rec3.locY, 10);
-  //println(mouseX,mouseY);
-  Cityinfo(mouseX, mouseY);
-
-  }
-  
-}
-
-////GIVE Information depending on where the user hovers over////
-void Cityinfo(int mouseX, int mouseY) {
-  if (sqrt(pow(rec1.locX - mouseX, 2 ) + pow(rec1.locY - mouseY, 2))<10) {
-    println(rec1.name);
-
-  } else if (sqrt(pow(rec2.locX - mouseX, 2 ) + pow(rec2.locY - mouseY, 2))<10) {
-    println(rec2.name);
-
-  } else if (sqrt(pow(rec3.locX - mouseX, 2 ) + pow(rec3.locY - mouseY, 2))<10) {
-    println(rec3.name);
-
+    stroke(0);
+    fill(255,0,0);
+    circle(paris.locX,paris.locY,10);
   }
   
 }
